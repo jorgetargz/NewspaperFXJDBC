@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.screens.articles_list.ArticlesListController">
+    <Label fx:id="title" layoutX="58.0" layoutY="33.0" prefHeight="82.0" prefWidth="801.0" styleClass="title"/>
+    <TableView fx:id="tableArticles" layoutX="241.0" layoutY="256.0" onMouseClicked="#updateInfoLabel"
+               prefHeight="342.0" prefWidth="528.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="70.39999389648438" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="164.80001831054688" text="Name"/>
+            <TableColumn fx:id="columnArticleType" prefWidth="136.0" text="Article type"/>
+            <TableColumn fx:id="columnNewspaperId" prefWidth="147.20001220703125" text="Newspaper ID"/>
+        </columns>
+    </TableView>
+    <MFXComboBox fx:id="cbArticleType" layoutX="174.0" layoutY="145.0" prefHeight="55.0" prefWidth="179.0"/>
+    <Label layoutX="174.0" layoutY="122.0" text="Choose an article type:"/>
+    <MFXButton fx:id="btnFilter" buttonType="RAISED" layoutX="403.0" layoutY="146.0" onAction="#filter"
+               prefHeight="55.0" prefWidth="102.0" text="Filter"/>
+    <Label id="articleInfoBox" fx:id="infoLabel" layoutX="550.0" layoutY="111.0" prefHeight="124.0" prefWidth="309.0"
+           text="Click an article"/>
+</AnchorPane>

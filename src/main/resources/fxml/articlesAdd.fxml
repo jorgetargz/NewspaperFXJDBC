@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.screens.articles_add.ArticlesAddController">
+    <Label fx:id="title" layoutX="89.0" layoutY="35.0" prefHeight="82.0" prefWidth="801.0" styleClass="title"/>
+    <TableView fx:id="tableArticles" layoutX="151.0" layoutY="140.0" prefHeight="329.0" prefWidth="678.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="104.0" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="208.79998779296875" text="Name"/>
+            <TableColumn fx:id="columnArticleType" prefWidth="177.60003662109375" text="Article type ID"/>
+            <TableColumn fx:id="columnNewspaperId" prefWidth="167.199951171875" text="Newspaper ID"/>
+        </columns>
+    </TableView>
+    <MFXTextField fx:id="inputName" layoutX="180.0" layoutY="489.0" prefHeight="55.0" prefWidth="170.0"/>
+    <MFXComboBox fx:id="comboType" layoutX="391.0" layoutY="488.0" prefHeight="55.0" prefWidth="170.0"/>
+    <MFXComboBox fx:id="comboNewspaper" layoutX="608.0" layoutY="487.0" prefHeight="55.0" prefWidth="170.0"/>
+    <MFXButton fx:id="btnAdd" buttonType="RAISED" layoutX="391.0" layoutY="566.0" onAction="#addArticle"
+               prefHeight="55.0" prefWidth="170.0" text="%AddARticle"/>
+    <Label layoutX="180.0" layoutY="470.0" text="Name"/>
+    <Label layoutX="391.0" layoutY="470.0" text="Article type"/>
+    <Label layoutX="608.0" layoutY="470.0" text="Newspaper"/>
+</AnchorPane>

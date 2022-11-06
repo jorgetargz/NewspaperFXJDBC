@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.screens.login.LoginController">
+    <Label id="tituloLogin" layoutX="87.0" layoutY="385.0" text="%Title" textFill="#d978c6"/>
+    <ImageView fx:id="logo" fitHeight="304.0" fitWidth="442.0" layoutX="306.0" layoutY="23.0" pickOnBounds="true"
+               preserveRatio="true">
+    </ImageView>
+    <MFXTextField fx:id="txtUsername" floatMode="BORDER" layoutX="519.0" layoutY="359.0" prefHeight="2.0"
+                  prefWidth="290.0" promptText="%Username"/>
+    <MFXPasswordField fx:id="txtPass" layoutX="519.0" layoutY="424.0" prefHeight="53.0" prefWidth="290.0"
+                      promptText="%Pass"/>
+    <MFXButton fx:id="btnLogin" layoutX="386.0" layoutY="520.0" mnemonicParsing="false" onAction="#doLogin"
+               prefHeight="34.0" prefWidth="166.0" text="%Login"/>
+</AnchorPane>

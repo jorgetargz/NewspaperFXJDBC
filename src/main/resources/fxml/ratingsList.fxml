@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.screens.ratings_list.RatingsListController">
+    <Label fx:id="title" layoutX="89.0" layoutY="60.0" prefHeight="82.0" prefWidth="801.0" styleClass="title"/>
+    <TableView fx:id="tableRatings" layoutX="286.0" layoutY="172.0" prefHeight="342.0" prefWidth="375.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="59.20001220703125" text="ID"/>
+            <TableColumn fx:id="columnIdReader" prefWidth="82.4000244140625" text="ID Reader"/>
+            <TableColumn fx:id="columnIdArticle" prefWidth="109.60003662109375" text="ID Article"/>
+            <TableColumn fx:id="columnRating" prefWidth="116.79998779296875" text="Rating"/>
+        </columns>
+    </TableView>
+</AnchorPane>

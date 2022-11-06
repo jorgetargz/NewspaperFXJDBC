@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.screens.readers_delete.ReadersDeleteController">
+    <Label fx:id="title" layoutX="89.0" layoutY="60.0" prefHeight="82.0" prefWidth="801.0" styleClass="title"/>
+    <TableView fx:id="tableReaders" layoutX="151.0" layoutY="171.0" prefHeight="342.0" prefWidth="677.0">
+        <columns>
+            <TableColumn fx:id="columnId" prefWidth="104.0" text="ID"/>
+            <TableColumn fx:id="columnName" prefWidth="208.79998779296875" text="Name"/>
+            <TableColumn fx:id="columnDateOfBirth" prefWidth="177.60003662109375" text="Birthday"/>
+        </columns>
+    </TableView>
+    <MFXButton layoutX="383.0" layoutY="551.0" onAction="#deleteReader" prefHeight="46.0" prefWidth="213.0"
+               text="Delete Reader"/>
+</AnchorPane>

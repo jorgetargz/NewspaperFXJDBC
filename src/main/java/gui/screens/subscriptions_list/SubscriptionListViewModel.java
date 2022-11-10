@@ -63,22 +63,30 @@ public class SubscriptionListViewModel {
     }
 
     public void loadSubscriptionsByNewspaper(Newspaper newspaper) {
-        List<Subscription> subscriptions = servicesSubscriptions.getSubscriptionsByNewspaper(newspaper);
-        if (subscriptions.isEmpty()) {
-            state.set(new SubscriptionListState("There are no subscriptions for this newspaper"));
+        if (newspaper == null) {
+            state.set(new SubscriptionListState("Select a newspaper"));
         } else {
-            observableSubscriptions.clear();
-            observableSubscriptions.setAll(subscriptions);
+            List<Subscription> subscriptions = servicesSubscriptions.getSubscriptionsByNewspaper(newspaper);
+            if (subscriptions.isEmpty()) {
+                state.set(new SubscriptionListState("There are no subscriptions for this newspaper"));
+            } else {
+                observableSubscriptions.clear();
+                observableSubscriptions.setAll(subscriptions);
+            }
         }
     }
 
     public void loadOldestSubscriptionsByNewspaper(Newspaper newspaper) {
-        List<Subscription> subscriptions = servicesSubscriptions.getOldestSubscriptionsByNewspaper(newspaper);
-        if (subscriptions.isEmpty()) {
-            state.set(new SubscriptionListState("There are no subscriptions for this newspaper"));
+        if (newspaper == null) {
+            state.set(new SubscriptionListState("Please select a newspaper"));
         } else {
-            observableSubscriptions.clear();
-            observableSubscriptions.setAll(subscriptions);
+            List<Subscription> subscriptions = servicesSubscriptions.getOldestSubscriptionsByNewspaper(newspaper);
+            if (subscriptions.isEmpty()) {
+                state.set(new SubscriptionListState("There are no subscriptions for this newspaper"));
+            } else {
+                observableSubscriptions.clear();
+                observableSubscriptions.setAll(subscriptions);
+            }
         }
     }
 

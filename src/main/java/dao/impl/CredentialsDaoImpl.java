@@ -61,7 +61,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
         }
-        return -1;
+        return Constantes.SQL_EXCEPTION;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
         }
-        return -1;
+        return Constantes.SQL_EXCEPTION;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
         } catch (SQLException ex) {
             log.error(ex.getMessage(), ex);
         }
-        return -1;
+        return Constantes.SQL_EXCEPTION;
     }
 
     private Login getLoginFromRS(ResultSet rs) throws SQLException {

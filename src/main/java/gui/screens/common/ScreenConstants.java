@@ -3,8 +3,6 @@ package gui.screens.common;
 public class ScreenConstants {
 
 
-    ;
-
     private ScreenConstants() {
 
     }

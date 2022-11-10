@@ -117,7 +117,7 @@ public class ReadersDaoImpl implements ReadersDao {
 
     private int executeSavingReaderStatements(Reader reader, Connection con) {
         try (PreparedStatement preparedStatementInsertReader = con.prepareStatement(SQLQueries.INSERT_READER, Statement.RETURN_GENERATED_KEYS);
-             PreparedStatement preparedStatementInsertCredentials = con.prepareStatement(SQLQueries.INSERT_CREDENTIALS)) {
+             PreparedStatement preparedStatementInsertCredentials = con.prepareStatement(SQLQueries.INSERT_LOGIN_QUERY)) {
 
             preparedStatementInsertReader.setString(1, reader.getName());
             preparedStatementInsertReader.setDate(2, Date.valueOf(reader.getDateOfBirth()));
@@ -148,9 +148,9 @@ public class ReadersDaoImpl implements ReadersDao {
         }
     }
 
-    private int executeUpdatingReaderStatements(Reader reader, Connection con) throws SQLException {
+    private int executeUpdatingReaderStatements(Reader reader, Connection con) {
         try (PreparedStatement preparedStatementUpdateReader = con.prepareStatement(SQLQueries.UPDATE_READER);
-             PreparedStatement preparedStatementUpdateCredentials = con.prepareStatement(SQLQueries.UPDATE_CREDENTIALS)) {
+             PreparedStatement preparedStatementUpdateCredentials = con.prepareStatement(SQLQueries.UPDATE_LOGIN_QUERY)) {
 
             preparedStatementUpdateReader.setString(1, reader.getName());
             preparedStatementUpdateReader.setDate(2, java.sql.Date.valueOf(reader.getDateOfBirth()));
@@ -173,7 +173,7 @@ public class ReadersDaoImpl implements ReadersDao {
         try (PreparedStatement preparedStatementDeleteReader = con.prepareStatement(SQLQueries.DELETE_READER);
              PreparedStatement preparedStatementDeleteReaderRatings = con.prepareStatement(SQLQueries.DELETE_RATINGS_BY_READER_ID_QUERY);
              PreparedStatement preparedStatementDeleteReaderSubscriptions = con.prepareStatement(SQLQueries.DELETE_SUBSCRIPTIONS_BY_READER_ID);
-             PreparedStatement preparedStatementDeleteReaderCredentials = con.prepareStatement(SQLQueries.DELETE_CREDENTIALS_BY_READER_ID)) {
+             PreparedStatement preparedStatementDeleteReaderCredentials = con.prepareStatement(SQLQueries.DELETE_LOGIN_BY_READER_ID)) {
 
             preparedStatementDeleteReaderRatings.setInt(1, reader.getId());
             preparedStatementDeleteReaderRatings.executeUpdate();

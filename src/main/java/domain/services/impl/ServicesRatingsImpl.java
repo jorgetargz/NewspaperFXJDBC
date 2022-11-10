@@ -7,6 +7,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class ServicesRatingsImpl implements ServicesRatings {
@@ -54,7 +55,7 @@ public class ServicesRatingsImpl implements ServicesRatings {
         Subscription subscription = daoSubscriptions.get(newspaper, reader);
         if (subscription == null) {
             return Either.left("You are not subscribed to this newspaper");
-        } else if (subscription.getCancellationDate() != null && subscription.getCancellationDate().isBefore(LocalDate.now())) {
+        } else if (subscription.getCancellationDate() != null && subscription.getCancellationDate().isBefore(LocalDate.now().plus(1, ChronoUnit.DAYS))) {
             return Either.left("You have canceled your subscription to this newspaper");
         } else if (subscription.getSigningDate().isAfter(LocalDate.now())) {
             return Either.left("You have not yet started your subscription to this newspaper");

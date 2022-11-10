@@ -12,4 +12,9 @@ public class Constantes {
     public static final String ID = "id";
     public static final String NAME_READER = "name_reader";
     public static final String BIRTH_READER = "birth_reader";
+    public static final int BAD_RATING_LIMIT = 4;
+    public static final int MAX_POOL_SIZE = 4;
+    public static final int TIMEOUT_MS = 5000;
+    public static final int CACHE_SIZE = 250;
+    public static final int CACHE_SQL_LIMIT = 2048;
 }

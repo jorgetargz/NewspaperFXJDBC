@@ -1,5 +1,6 @@
 package dao.impl.row_mapers;
 
+import dao.common.Constantes;
 import domain.modelo.ArticleQuery3;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -18,7 +19,7 @@ public class ArticleQuery3RowMaper implements RowMapper<ArticleQuery3> {
         articlequery3.setIdReader(rs.getInt("id_reader"));
         articlequery3.setRating(rs.getInt("rating"));
         articlequery3.setBadRatings(rs.getInt("bad_ratings"));
-        articlequery3.setCritical(rs.getInt("bad_ratings") > 4);
+        articlequery3.setCritical(rs.getInt("bad_ratings") > Constantes.BAD_RATING_LIMIT);
         return articlequery3;
     }
 }

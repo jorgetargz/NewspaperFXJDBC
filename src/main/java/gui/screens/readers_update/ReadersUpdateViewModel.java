@@ -52,8 +52,8 @@ public class ReadersUpdateViewModel {
             reader.setDateOfBirth(birthdayInput);
             Either<String, Boolean> result = servicesReaders.updateReader(reader, passwordInput);
             if (result.isRight()) {
-                observableReaders.removeIf(r -> r.getId() == reader.getId());
-                observableReaders.add(reader);
+               observableReaders.clear();
+                observableReaders.setAll(servicesReaders.getReaders());
                 state.set(new ReadersUpdateState(null, true));
             } else {
                 state.set(new ReadersUpdateState("Reader could not be updated", false));

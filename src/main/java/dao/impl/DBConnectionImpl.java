@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import configuration.Configuration;
 import dao.DBConnection;
+import dao.common.Constantes;
 import jakarta.annotation.PreDestroy;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
@@ -32,14 +33,14 @@ public class DBConnectionImpl implements DBConnection {
         hikariConfig.setUsername(config.getProperty("user_name"));
         hikariConfig.setPassword(config.getProperty("password"));
         hikariConfig.setDriverClassName(config.getProperty("driver"));
-        hikariConfig.setMaximumPoolSize(4);
+        hikariConfig.setMaximumPoolSize(Constantes.MAX_POOL_SIZE);
 
-        hikariConfig.setIdleTimeout(5000);
-        hikariConfig.setConnectionTimeout(5000);
-        hikariConfig.setMaxLifetime(5000);
+        hikariConfig.setIdleTimeout(Constantes.TIMEOUT_MS);
+        hikariConfig.setConnectionTimeout(Constantes.TIMEOUT_MS);
+        hikariConfig.setMaxLifetime(Constantes.TIMEOUT_MS);
         hikariConfig.addDataSourceProperty("cachePrepStmts", true);
-        hikariConfig.addDataSourceProperty("prepStmtCacheSize", 250);
-        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", 2048);
+        hikariConfig.addDataSourceProperty("prepStmtCacheSize", Constantes.CACHE_SIZE);
+        hikariConfig.addDataSourceProperty("prepStmtCacheSqlLimit", Constantes.CACHE_SQL_LIMIT);
 
         return new HikariDataSource(hikariConfig);
     }

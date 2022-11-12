@@ -3,7 +3,6 @@ package gui.screens.articles_list_with_newspaper;
 import domain.modelo.ArticleQuery2;
 import domain.modelo.ArticleType;
 import gui.screens.common.BaseScreenController;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -15,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ArticlesListWithNewspaperController extends BaseScreenController {
 
+    private final ArticlesListWithNewspaperViewModel articlesListWithNewspaperViewModel;
     @FXML
     private Label title;
     @FXML
@@ -33,10 +33,7 @@ public class ArticlesListWithNewspaperController extends BaseScreenController {
     private TableColumn<ArticleQuery2, String> columnNewspaperName;
     @FXML
     private MFXComboBox<ArticleType> cbArticleType;
-    @FXML
-    private MFXButton btnFilter;
 
-    private final ArticlesListWithNewspaperViewModel articlesListWithNewspaperViewModel;
 
     @Inject
     public ArticlesListWithNewspaperController(ArticlesListWithNewspaperViewModel articlesListWithNewspaperViewModel) {

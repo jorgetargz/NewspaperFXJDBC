@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public class ReadersDeleteController extends BaseScreenController {
 
+    private final ReadersDeleteViewModel readersDeleteViewModel;
     @FXML
     private Label title;
     @FXML
@@ -22,8 +23,6 @@ public class ReadersDeleteController extends BaseScreenController {
     private TableColumn<Reader, String> columnName;
     @FXML
     private TableColumn<Reader, LocalDate> columnDateOfBirth;
-
-    private final ReadersDeleteViewModel readersDeleteViewModel;
 
     @Inject
     public ReadersDeleteController(ReadersDeleteViewModel readersDeleteViewModel) {

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 public class ReaderAddController extends BaseScreenController {
 
+    private final ReaderAddViewModel readersAddViewModel;
     @FXML
     private Label title;
     @FXML
@@ -35,8 +36,6 @@ public class ReaderAddController extends BaseScreenController {
     private MFXPasswordField passwordTxt;
     @FXML
     private MFXTextField usernameTxt;
-
-    private final ReaderAddViewModel readersAddViewModel;
 
     @Inject
     public ReaderAddController(ReaderAddViewModel readersAddViewModel) {

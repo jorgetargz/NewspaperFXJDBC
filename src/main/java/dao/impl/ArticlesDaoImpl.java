@@ -70,12 +70,6 @@ public class ArticlesDaoImpl implements ArticlesDao {
     }
 
     @Override
-    public int deleteAll(Newspaper newspaper) {
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dbConnection.getDataSource());
-        return jdbcTemplate.update(SQLQueries.DELETE_ARTICLES_BY_NEWSPAPER_QUERY, newspaper.getId());
-    }
-
-    @Override
     public ArticleQuery1 getArticleQuery1(int id) {
         try (Connection con = dbConnection.getConnection();
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_ARTICLE_QUERY)) {

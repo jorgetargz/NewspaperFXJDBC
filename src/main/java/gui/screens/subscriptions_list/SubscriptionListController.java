@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 public class SubscriptionListController extends BaseScreenController {
 
+    private final SubscriptionListViewModel subscriptionListViewModel;
     @FXML
     private MFXComboBox<Newspaper> cbNewspapers;
     @FXML
@@ -31,8 +32,6 @@ public class SubscriptionListController extends BaseScreenController {
     private TableColumn<Subscription, LocalDate> columnSigningDate;
     @FXML
     private TableColumn<Subscription, LocalDate> columnCancellationDate;
-
-    private final SubscriptionListViewModel subscriptionListViewModel;
 
     @Inject
     public SubscriptionListController(SubscriptionListViewModel subscriptionListViewModel) {

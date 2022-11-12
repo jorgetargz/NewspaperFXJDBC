@@ -7,7 +7,6 @@ import dao.ReadersDao;
 import dao.common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.ArticleRating;
-import domain.modelo.Newspaper;
 import domain.modelo.Reader;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
@@ -99,19 +98,6 @@ public class RatingsDaoImpl implements RatingsDao {
              PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_RATING_QUERY)) {
             preparedStatement.setInt(1, articleRating.getArticle().getId());
             preparedStatement.setInt(2, articleRating.getReader().getId());
-            preparedStatement.executeUpdate();
-            return Constantes.SUCCESS;
-        } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-            return Constantes.SQL_EXCEPTION;
-        }
-    }
-
-    @Override
-    public int deleteAll(Newspaper newspaper) {
-        try (Connection con = dbConnection.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_RATINGS_BY_NEWSPAPER_QUERY)) {
-            preparedStatement.setInt(1, newspaper.getId());
             preparedStatement.executeUpdate();
             return Constantes.SUCCESS;
         } catch (SQLException ex) {

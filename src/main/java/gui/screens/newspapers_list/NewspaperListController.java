@@ -15,6 +15,7 @@ import java.time.LocalDate;
 
 public class NewspaperListController extends BaseScreenController {
 
+    private final NewspaperListViewModel newspaperListViewModel;
     @FXML
     private Label title;
     @FXML
@@ -25,8 +26,6 @@ public class NewspaperListController extends BaseScreenController {
     private TableColumn<Newspaper, String> columnName;
     @FXML
     private TableColumn<Newspaper, LocalDate> columnPublishDate;
-
-    private final NewspaperListViewModel newspaperListViewModel;
 
     @Inject
     public NewspaperListController(NewspaperListViewModel newspaperListViewModel) {

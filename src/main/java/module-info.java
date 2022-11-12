@@ -15,6 +15,7 @@ module NewspaperFX {
     requires jakarta.cdi;
     requires java.sql;
     requires com.zaxxer.hikari;
+    requires spring.tx;
 
     exports gui.main;
     exports gui.main.common;

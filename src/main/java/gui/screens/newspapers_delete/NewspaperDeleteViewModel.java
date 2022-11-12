@@ -50,12 +50,12 @@ public class NewspaperDeleteViewModel {
             if (servicesNewspapers.hasArticles(newspaper)) {
                 state.set(new NewspaperDeleteState(null, true));
             } else {
-                deleteNewspaperConfirm(newspaper);
+                deleteNewspaperConfirmed(newspaper);
             }
         }
     }
 
-    public void deleteNewspaperConfirm(Newspaper newspaper) {
+    public void deleteNewspaperConfirmed(Newspaper newspaper) {
         Either<String, Boolean> resultNewspaperDelete = servicesNewspapers.deleteNewspaper(newspaper);
         if (resultNewspaperDelete.isRight()) {
             loadNewspapers();

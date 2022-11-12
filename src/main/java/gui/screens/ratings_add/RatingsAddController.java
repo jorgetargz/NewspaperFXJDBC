@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RatingsAddController extends BaseScreenController {
 
+    private final RatingsAddViewModel ratingsAddViewModel;
     @FXML
     private Label title;
     @FXML
@@ -44,8 +45,6 @@ public class RatingsAddController extends BaseScreenController {
     private MFXTextField idArticle;
     @FXML
     private MFXTextField rating;
-
-    private final RatingsAddViewModel ratingsAddViewModel;
 
     @Inject
     public RatingsAddController(RatingsAddViewModel ratingsAddViewModel) {

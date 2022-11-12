@@ -3,7 +3,6 @@ package gui.screens.articles_list_with_bad_rating;
 import domain.modelo.ArticleQuery3;
 import domain.modelo.Newspaper;
 import gui.screens.common.BaseScreenController;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -16,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class ArticlesListWithBadRatingController extends BaseScreenController {
 
 
+    private final ArticlesListWithBadRatingViewModel articlesListWithBadRatingViewModel;
     @FXML
     private Label title;
     @FXML
@@ -36,10 +36,6 @@ public class ArticlesListWithBadRatingController extends BaseScreenController {
     private TableColumn<ArticleQuery3, String> columnIsCritical;
     @FXML
     private MFXComboBox<Newspaper> cbNewspapers;
-    @FXML
-    private MFXButton btnFilter;
-
-    private final ArticlesListWithBadRatingViewModel articlesListWithBadRatingViewModel;
 
     @Inject
     public ArticlesListWithBadRatingController(ArticlesListWithBadRatingViewModel articlesListWithBadRatingViewModel) {

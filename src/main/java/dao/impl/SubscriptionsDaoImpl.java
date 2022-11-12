@@ -85,7 +85,7 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 Subscription subscription = new Subscription();
-                subscription.setReader(readersDao.get(newspaper.getId()));
+                subscription.setReader(readersDao.get(reader.getId()));
                 subscription.setNewspaper(newspapersDao.get(newspaper.getId()));
                 subscription.setSigningDate(rs.getDate(Constantes.SIGNING_DATE).toLocalDate());
                 Date cancellationDate = rs.getDate(Constantes.CANCELLATION_DATE);
@@ -140,20 +140,6 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
 
             preparedStatement.setInt(1, subscription.getReader().getId());
             preparedStatement.setInt(2, subscription.getNewspaper().getId());
-            preparedStatement.executeUpdate();
-            return Constantes.SUCCESS;
-        } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
-            return Constantes.SQL_EXCEPTION;
-        }
-    }
-
-    @Override
-    public int deleteAll(Newspaper newspaper) {
-        try (Connection con = dbConnection.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.DELETE_SUBSCRIPTIONS_BY_NEWSPAPER)) {
-
-            preparedStatement.setInt(1, newspaper.getId());
             preparedStatement.executeUpdate();
             return Constantes.SUCCESS;
         } catch (SQLException ex) {

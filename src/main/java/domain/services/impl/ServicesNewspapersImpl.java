@@ -2,8 +2,6 @@ package domain.services.impl;
 
 import dao.ArticlesDao;
 import dao.NewspapersDao;
-import dao.RatingsDao;
-import dao.SubscriptionsDao;
 import domain.modelo.Newspaper;
 import domain.services.ServicesNewspapers;
 import io.vavr.control.Either;
@@ -14,15 +12,11 @@ import java.util.List;
 public class ServicesNewspapersImpl implements ServicesNewspapers {
 
     private final NewspapersDao daoNewspapers;
-    private final RatingsDao daoRatings;
-    private final SubscriptionsDao daoSubscriptions;
     private final ArticlesDao daoArticles;
 
     @Inject
-    public ServicesNewspapersImpl(NewspapersDao daoNewspapers, RatingsDao daoRatings, SubscriptionsDao daoSubscriptions, ArticlesDao daoArticles) {
+    public ServicesNewspapersImpl(NewspapersDao daoNewspapers, ArticlesDao daoArticles) {
         this.daoNewspapers = daoNewspapers;
-        this.daoRatings = daoRatings;
-        this.daoSubscriptions = daoSubscriptions;
         this.daoArticles = daoArticles;
     }
 
@@ -43,19 +37,11 @@ public class ServicesNewspapersImpl implements ServicesNewspapers {
 
     @Override
     public Either<String, Boolean> deleteNewspaper(Newspaper newspaper) {
-        if (daoSubscriptions.deleteAll(newspaper) == 0) {
-            if (daoRatings.deleteAll(newspaper) == 0) {
-                if (daoArticles.deleteAll(newspaper) >= 0) {
-                    return daoNewspapers.delete(newspaper) == 1 ? Either.right(true) : Either.left("Error deleting the newspaper");
-                } else {
-                    return Either.left("Error deleting the articles");
-                }
-            } else {
-                return Either.left("Error deleting the ratings");
-            }
-        } else {
-            return Either.left("Error deleting the subscriptions");
-        }
+        return switch (daoNewspapers.delete(newspaper)) {
+            case 0 -> Either.right(true);
+            case -1 - 4 -> Either.left("SQL error deleting the newspaper");
+            default -> Either.left("Error deleting the newspaper");
+        };
     }
 
     @Override

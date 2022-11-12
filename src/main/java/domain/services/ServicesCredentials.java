@@ -4,4 +4,6 @@ import domain.modelo.Reader;
 
 public interface ServicesCredentials {
     Reader scLogin(String username, String password);
+
+    void scCloseApp();
 }

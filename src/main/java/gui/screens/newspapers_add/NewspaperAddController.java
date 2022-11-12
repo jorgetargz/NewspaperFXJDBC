@@ -6,7 +6,6 @@ import gui.screens.common.ScreenConstants;
 import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -18,6 +17,7 @@ import java.time.LocalDate;
 
 public class NewspaperAddController extends BaseScreenController {
 
+    private final NewspaperAddViewModel newspaperAddViewModel;
     @FXML
     private MFXTextField nameTxt;
     @FXML
@@ -32,8 +32,6 @@ public class NewspaperAddController extends BaseScreenController {
     private TableColumn<Newspaper, String> columnName;
     @FXML
     private TableColumn<Newspaper, LocalDate> columnPublishDate;
-
-    private final NewspaperAddViewModel newspaperAddViewModel;
 
     @Inject
     public NewspaperAddController(NewspaperAddViewModel newspaperAddViewModel) {
@@ -63,7 +61,7 @@ public class NewspaperAddController extends BaseScreenController {
     }
 
     @FXML
-    private void addNewspaper(ActionEvent actionEvent) {
+    private void addNewspaper() {
         String name = nameTxt.getText();
         LocalDate releaseDate = releaseDatePicker.getValue();
         if (name.isEmpty() || releaseDate == null) {

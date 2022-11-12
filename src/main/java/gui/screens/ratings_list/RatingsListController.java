@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RatingsListController extends BaseScreenController {
 
+    private final RatingsListViewModel ratingsListViewModel;
     @FXML
     private Label title;
     @FXML
@@ -25,8 +26,6 @@ public class RatingsListController extends BaseScreenController {
     private TableColumn<ArticleRating, Integer> columnIdArticle;
     @FXML
     private TableColumn<ArticleRating, Integer> columnRating;
-
-    private final RatingsListViewModel ratingsListViewModel;
 
     @Inject
     public RatingsListController(RatingsListViewModel ratingsListViewModel) {

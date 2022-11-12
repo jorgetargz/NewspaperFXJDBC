@@ -17,6 +17,7 @@ import java.time.LocalDate;
 
 public class ReadersUpdateController extends BaseScreenController {
 
+    private final ReadersUpdateViewModel readersUpdateViewModel;
     @FXML
     private Label title;
     @FXML
@@ -35,8 +36,6 @@ public class ReadersUpdateController extends BaseScreenController {
     private MFXDatePicker datePicker;
     @FXML
     private MFXPasswordField paswordTxt;
-
-    private final ReadersUpdateViewModel readersUpdateViewModel;
 
     @Inject
     public ReadersUpdateController(ReadersUpdateViewModel readersUpdateViewModel) {

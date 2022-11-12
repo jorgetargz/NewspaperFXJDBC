@@ -19,6 +19,7 @@ import java.time.LocalDate;
 
 public class SubscriptionAddController extends BaseScreenController {
 
+    private final SubscriptionAddViewModel subscriptionAddViewModel;
     @FXML
     private Label title;
     @FXML
@@ -45,8 +46,6 @@ public class SubscriptionAddController extends BaseScreenController {
     private TableColumn<Subscription, LocalDate> columnSigningDate;
     @FXML
     private TableColumn<Subscription, LocalDate> columnCancellationDate;
-
-    private final SubscriptionAddViewModel subscriptionAddViewModel;
 
     @Inject
     public SubscriptionAddController(SubscriptionAddViewModel subscriptionAddViewModel) {

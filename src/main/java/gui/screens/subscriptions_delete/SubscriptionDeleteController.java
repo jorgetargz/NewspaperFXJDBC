@@ -4,7 +4,6 @@ import domain.modelo.Subscription;
 import gui.screens.common.BaseScreenController;
 import gui.screens.common.ScreenConstants;
 import jakarta.inject.Inject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -16,6 +15,7 @@ import java.time.LocalDate;
 
 public class SubscriptionDeleteController extends BaseScreenController {
 
+    private final SubscriptionDeleteViewModel subscriptionDeleteViewModel;
     @FXML
     private Label title;
     @FXML
@@ -28,8 +28,6 @@ public class SubscriptionDeleteController extends BaseScreenController {
     private TableColumn<Subscription, LocalDate> columnSigningDate;
     @FXML
     private TableColumn<Subscription, LocalDate> columnCancellationDate;
-
-    private final SubscriptionDeleteViewModel subscriptionDeleteViewModel;
 
     @Inject
     public SubscriptionDeleteController(SubscriptionDeleteViewModel subscriptionDeleteViewModel) {
@@ -60,7 +58,7 @@ public class SubscriptionDeleteController extends BaseScreenController {
     }
 
     @FXML
-    private void deleteSubscription(ActionEvent actionEvent) {
+    private void deleteSubscription() {
         Subscription subscription = tableSubscriptions.getSelectionModel().getSelectedItem();
         if (subscription != null) {
             subscriptionDeleteViewModel.deleteSubscription(subscription);

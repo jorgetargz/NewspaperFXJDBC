@@ -52,7 +52,7 @@ public class ReadersUpdateViewModel {
             reader.setDateOfBirth(birthdayInput);
             Either<String, Boolean> result = servicesReaders.updateReader(reader, passwordInput);
             if (result.isRight()) {
-               observableReaders.clear();
+                observableReaders.clear();
                 observableReaders.setAll(servicesReaders.getReaders());
                 state.set(new ReadersUpdateState(null, true));
             } else {

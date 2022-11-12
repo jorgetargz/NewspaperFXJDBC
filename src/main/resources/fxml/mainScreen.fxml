@@ -4,8 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane fx:id="root" prefHeight="700.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.screens.main.MainController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:id="root" prefHeight="700.0" prefWidth="980.0"
+            xmlns="http://javafx.com/javafx/17" fx:controller="gui.screens.main.MainController">
     <top>
         <HBox fx:id="windowHeader" alignment="CENTER_RIGHT" layoutY="6.0" prefHeight="50.0" prefWidth="1281.0"
               spacing="10.0" styleClass="windowBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"

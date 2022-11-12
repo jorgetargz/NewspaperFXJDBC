@@ -1,8 +1,8 @@
 package gui.screens.main;
 
 
-import dao.DBConnection;
 import domain.modelo.Reader;
+import domain.services.ServicesCredentials;
 import gui.screens.common.BaseScreenController;
 import gui.screens.common.ScreenConstants;
 import gui.screens.common.Screens;
@@ -31,6 +31,8 @@ import java.util.ResourceBundle;
 public class MainController {
 
     final Instance<Object> instance;
+    private final Alert alert;
+    private final ServicesCredentials servicesCredentials;
     @FXML
     private MenuItem menuItemListSubscriptions;
     @FXML
@@ -53,12 +55,9 @@ public class MainController {
     private Menu menuRatings;
     @FXML
     private Menu menuHelp;
-
     private Stage primaryStage;
-    private final Alert alert;
     private double xOffset;
     private double yOffset;
-
     @FXML
     private BorderPane root;
     @FXML
@@ -71,25 +70,22 @@ public class MainController {
     private MFXFontIcon alwaysOnTopIcon;
     @FXML
     private MenuBar menuPrincipal;
-
-    private final DBConnection dbConnection;
-
     private Reader reader;
 
 
     @Inject
-    public MainController(Instance<Object> instance, DBConnection dbConnection) {
+    public MainController(Instance<Object> instance, ServicesCredentials servicesCredentials) {
         this.instance = instance;
-        this.dbConnection = dbConnection;
+        this.servicesCredentials = servicesCredentials;
         alert = new Alert(Alert.AlertType.NONE);
-    }
-
-    public void setReader(Reader reader) {
-        this.reader = reader;
     }
 
     public Reader getReader() {
         return reader;
+    }
+
+    public void setReader(Reader reader) {
+        this.reader = reader;
     }
 
     public void setStage(Stage stage) {
@@ -135,7 +131,7 @@ public class MainController {
         res.ifPresent(buttonType -> {
             if (buttonType == ButtonType.YES) {
                 //Cerrar el pool de conexiones
-                dbConnection.closePool();
+                servicesCredentials.scCloseApp();
                 Platform.exit();
             }
         });

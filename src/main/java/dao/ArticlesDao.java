@@ -19,8 +19,6 @@ public interface ArticlesDao {
 
     int delete(Article article);
 
-    int deleteAll(Newspaper newspaper);
-
     ArticleQuery1 getArticleQuery1(int id);
 
     List<ArticleQuery2> getArticlesQuery2(ArticleType articleType);

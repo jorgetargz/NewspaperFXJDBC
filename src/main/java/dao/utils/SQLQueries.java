@@ -2,9 +2,6 @@ package dao.utils;
 
 public class SQLQueries {
 
-    private SQLQueries() {
-    }
-
     public static final String SELECT_SUBSCRIPTIONS_QUERY = "SELECT * FROM subscribe";
     public static final String SELECT_SUBSCRIPTIONS_BY_NEWSPAPER_QUERY = "select * from subscribe where id_newspaper = ?";
     public static final String SELECT_SUBSCRIPTIONS_BY_READER_QUERY = "SELECT * FROM subscribe WHERE id_reader = ?";
@@ -15,7 +12,6 @@ public class SQLQueries {
     public static final String DELETE_SUBSCRIPTION = "delete from subscribe where id_reader = ? and id_newspaper = ?";
     public static final String DELETE_SUBSCRIPTIONS_BY_NEWSPAPER = "DELETE FROM subscribe WHERE id_newspaper = ?";
     public static final String DELETE_SUBSCRIPTIONS_BY_READER_ID = "delete from subscribe where id_reader = ?";
-
     public static final String SELECT_READERS_QUERY = "select * from reader";
     public static final String SELECT_READER_FROM_ID_QUERY = "SELECT * FROM login WHERE id_reader = ?";
     public static final String SELECT_READER_FROM_LOGIN_QUERY = "SELECT * FROM login WHERE username = ? AND password = ?";
@@ -25,17 +21,14 @@ public class SQLQueries {
     public static final String INSERT_READER = "INSERT INTO reader (name_reader, birth_reader) VALUES (?,?)";
     public static final String UPDATE_READER = "update reader set name_reader = ?, birth_reader = ? where id = ?";
     public static final String DELETE_READER = "delete from reader where id = ?";
-
     public static final String INSERT_LOGIN_QUERY = "INSERT INTO login (username, password, id_reader) VALUES (?, ?, ?)";
     public static final String UPDATE_LOGIN_QUERY = "UPDATE login SET password = ? WHERE username = ?";
     public static final String DELETE_LOGIN_QUERY = "DELETE FROM login WHERE username = ?";
     public static final String DELETE_LOGIN_BY_READER_ID = "DELETE FROM login WHERE id_reader = ?";
-
     public static final String SELECT_NEWSPAPERS_QUERY = "SELECT * FROM newspaper";
     public static final String SELECT_NEWSPAPER_BY_ID_QUERY = "SELECT * FROM newspaper WHERE id = ?";
     public static final String INSERT_NEWSPAPER_QUERY = "INSERT INTO newspaper (name_newspaper, release_date) VALUES (?, ?)";
     public static final String DELETE_NEWSPAPER_QUERY = "DELETE FROM newspaper WHERE id = ?";
-
     public static final String SELECT_ARTICLES_WITH_TYPE_QUERY = "SELECT a.id, a.name_article, a.id_type, a.id_newspaper, t.description FROM article a INNER JOIN articletype t ON a.id_type = t.id";
     public static final String SELECT_ARTICLES_BY_NEWSPAPER_WITH_TYPE_QUERY = "SELECT a.id, a.name_article, a.id_type, a.id_newspaper, t.description FROM article a INNER JOIN articletype t ON a.id_type = t.id WHERE a.id_newspaper = ?";
     public static final String SELECT_ARTICLES_BY_READER_WITH_TYPE_FROM_SUSCRIBE_QUERY = "SELECT a.id, a.name_article, a.id_type, a.id_newspaper, t.description FROM article a INNER JOIN articletype t ON a.id_type = t.id INNER JOIN subscribe s ON a.id_newspaper = s.id_newspaper WHERE s.id_reader = ?";
@@ -47,12 +40,10 @@ public class SQLQueries {
     public static final String INSERT_ARTICLE_QUERY = "INSERT INTO article (name_article, id_type, id_newspaper) VALUES (?, ?, ?)";
     public static final String DELETE_ARTICLE_QUERY = "DELETE FROM article WHERE id = ?";
     public static final String DELETE_ARTICLES_BY_NEWSPAPER_QUERY = "DELETE FROM article WHERE id_newspaper = ?";
-
     public static final String SELECT_ARTICLE_TYPES_QUERY = "SELECT * FROM articletype";
     public static final String SELECT_ARTICLE_TYPE_BY_ID_QUERY = "SELECT * FROM articletype WHERE id = ?";
     public static final String INSERT_ARTICLE_TYPE_QUERY = "INSERT INTO articletype (id, description) VALUES (?, ?)";
     public static final String DELETE_ARTICLE_TYPE_QUERY = "DELETE FROM articletype WHERE id = ?";
-
     public static final String SELECT_RATINGS_QUERY = "select * from readarticle";
     public static final String SELECT_RATINGS_BY_READER_QUERY = "SELECT * FROM readarticle WHERE id_reader = ?";
     public static final String SELECT_RATING_BY_ID_QUERY = "select * from readarticle where id_article = ? and id_reader = ?";
@@ -60,5 +51,7 @@ public class SQLQueries {
     public static final String DELETE_RATING_QUERY = "delete from readarticle where id_article = ? and id_reader = ?";
     public static final String DELETE_RATINGS_BY_NEWSPAPER_QUERY = "DELETE FROM readarticle WHERE id_article IN (SELECT id FROM article WHERE id_newspaper = ?)";
     public static final String DELETE_RATINGS_BY_READER_ID_QUERY = "delete from readarticle where id_reader = ?";
+    private SQLQueries() {
+    }
 
 }

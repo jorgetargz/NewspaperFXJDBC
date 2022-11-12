@@ -21,7 +21,5 @@ public interface SubscriptionsDao {
 
     int delete(Subscription subscription);
 
-    int deleteAll(Newspaper newspaper);
-
     List<Subscription> getOldestSubscriptions(Newspaper newspaper);
 }

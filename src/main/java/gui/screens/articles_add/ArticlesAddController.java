@@ -5,7 +5,6 @@ import domain.modelo.ArticleType;
 import domain.modelo.Newspaper;
 import gui.screens.common.BaseScreenController;
 import gui.screens.common.ScreenConstants;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import jakarta.inject.Inject;
@@ -18,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ArticlesAddController extends BaseScreenController {
 
+    private final ArticlesAddViewModel articlesAddViewModel;
     @FXML
     private Label title;
     @FXML
@@ -36,10 +36,6 @@ public class ArticlesAddController extends BaseScreenController {
     private MFXComboBox<ArticleType> comboType;
     @FXML
     private MFXComboBox<Newspaper> comboNewspaper;
-    @FXML
-    private MFXButton btnAdd;
-
-    private final ArticlesAddViewModel articlesAddViewModel;
 
     @Inject
     public ArticlesAddController(ArticlesAddViewModel articlesAddViewModel) {

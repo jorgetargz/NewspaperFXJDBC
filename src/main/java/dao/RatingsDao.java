@@ -1,7 +1,6 @@
 package dao;
 
 import domain.modelo.ArticleRating;
-import domain.modelo.Newspaper;
 import domain.modelo.Reader;
 
 import java.util.List;
@@ -17,5 +16,4 @@ public interface RatingsDao {
 
     int delete(ArticleRating articleRating);
 
-    int deleteAll(Newspaper newspaper);
 }

@@ -18,6 +18,7 @@ import java.time.LocalDate;
 public class ReadersListController extends BaseScreenController {
 
 
+    private final ReadersListViewModel readersListViewModel;
     @FXML
     private Label title;
     @FXML
@@ -32,8 +33,6 @@ public class ReadersListController extends BaseScreenController {
     private MFXComboBox<ArticleType> cbArticleType;
     @FXML
     private MFXComboBox<Newspaper> cbNewspaper;
-
-    private final ReadersListViewModel readersListViewModel;
 
     @Inject
     public ReadersListController(ReadersListViewModel readersListViewModel) {

@@ -4,7 +4,6 @@ import domain.modelo.Article;
 import domain.modelo.ArticleQuery1;
 import domain.modelo.ArticleType;
 import gui.screens.common.BaseScreenController;
-import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
@@ -13,10 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 
 public class ArticlesListController extends BaseScreenController {
 
+    private final ArticlesListViewModel articlesListViewModel;
     @FXML
     private Label infoLabel;
     @FXML
@@ -33,10 +32,6 @@ public class ArticlesListController extends BaseScreenController {
     private TableColumn<Article, Integer> columnNewspaperId;
     @FXML
     private MFXComboBox<ArticleType> cbArticleType;
-    @FXML
-    private MFXButton btnFilter;
-
-    private final ArticlesListViewModel articlesListViewModel;
 
     @Inject
     public ArticlesListController(ArticlesListViewModel articlesListViewModel) {
@@ -70,7 +65,7 @@ public class ArticlesListController extends BaseScreenController {
     }
 
     @FXML
-    private void updateInfoLabel(MouseEvent mouseEvent) {
+    private void updateInfoLabel() {
         Article article = tableArticles.getSelectionModel().getSelectedItem();
         if (article != null) {
             ArticleQuery1 articleQuery1 = articlesListViewModel.getArticleQuery(article.getId());

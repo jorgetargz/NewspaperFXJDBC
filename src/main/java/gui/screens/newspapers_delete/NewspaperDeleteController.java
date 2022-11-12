@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public class NewspaperDeleteController extends BaseScreenController {
 
+    private final NewspaperDeleteViewModel newspaperDeleteViewModel;
     @FXML
     private Label title;
     @FXML
@@ -22,8 +23,6 @@ public class NewspaperDeleteController extends BaseScreenController {
     private TableColumn<Newspaper, String> columnName;
     @FXML
     private TableColumn<Newspaper, LocalDate> columnPublishDate;
-
-    private final NewspaperDeleteViewModel newspaperDeleteViewModel;
 
     @Inject
     public NewspaperDeleteController(NewspaperDeleteViewModel newspaperDeleteViewModel) {
@@ -53,11 +52,11 @@ public class NewspaperDeleteController extends BaseScreenController {
                 alert.getButtonTypes().add(ButtonType.YES);
                 alert.setTitle("Confirm delete");
                 alert.setHeaderText("Confirm delete");
-                alert.setContentText("This will delete the newspaper and all its articles. Are you sure you want to continue?");
+                alert.setContentText("This will delete the newspaper and all its articles, subscriptions and ratings. Are you sure you want to continue?");
                 Optional<ButtonType> res = alert.showAndWait();
                 res.ifPresent(buttonType -> {
                     if (buttonType == ButtonType.YES) {
-                        newspaperDeleteViewModel.deleteNewspaperConfirm(newspaper);
+                        newspaperDeleteViewModel.deleteNewspaperConfirmed(newspaper);
                     }
                 });
                 newspaperDeleteViewModel.cleanState();

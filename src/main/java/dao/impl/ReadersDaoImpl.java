@@ -1,6 +1,5 @@
 package dao.impl;
 
-import dao.CredentialsDao;
 import dao.DBConnection;
 import dao.ReadersDao;
 import dao.common.Constantes;
@@ -22,17 +21,15 @@ public class ReadersDaoImpl implements ReadersDao {
 
 
     private final DBConnection dbConnection;
-    private final CredentialsDao credentialsDao;
 
     @Inject
-    public ReadersDaoImpl(DBConnection dbConnection, CredentialsDao credentialsDao) {
+    public ReadersDaoImpl(DBConnection dbConnection) {
         this.dbConnection = dbConnection;
-        this.credentialsDao = credentialsDao;
     }
 
     @Override
     public List<Reader> getAll() {
-        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_QUERY)) {
+        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_WITH_LOGIN_QUERY)) {
             ResultSet rs = preparedStatement.executeQuery();
             return getReadersFromRS(rs);
 
@@ -44,7 +41,7 @@ public class ReadersDaoImpl implements ReadersDao {
 
     @Override
     public List<Reader> getAll(Newspaper newspaper) {
-        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_NEWSPAPER_QUERY)) {
+        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_WITH_LOGIN_BY_NEWSPAPER_QUERY)) {
             preparedStatement.setInt(1, newspaper.getId());
             ResultSet rs = preparedStatement.executeQuery();
             return getReadersFromRS(rs);
@@ -57,7 +54,7 @@ public class ReadersDaoImpl implements ReadersDao {
 
     @Override
     public List<Reader> getAll(ArticleType articleType) {
-        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_BY_ARTICLE_TYPE_QUERY)) {
+        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READERS_WITH_LOGIN_BY_ARTICLE_TYPE_QUERY)) {
             preparedStatement.setInt(1, articleType.getId());
             ResultSet rs = preparedStatement.executeQuery();
             return getReadersFromRS(rs);
@@ -70,7 +67,7 @@ public class ReadersDaoImpl implements ReadersDao {
 
     @Override
     public Reader get(int id) {
-        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_FROM_ID_WITH_LOGIN_QUERY)) {
+        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_WITH_LOGIN_FROM_ID_QUERY)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {

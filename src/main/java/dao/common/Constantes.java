@@ -17,4 +17,6 @@ public class Constantes {
     public static final int TIMEOUT_MS = 5000;
     public static final int CACHE_SIZE = 250;
     public static final int CACHE_SQL_LIMIT = 2048;
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
 }

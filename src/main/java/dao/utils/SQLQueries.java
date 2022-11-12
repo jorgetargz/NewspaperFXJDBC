@@ -13,14 +13,14 @@ public class SQLQueries {
     public static final String DELETE_SUBSCRIPTIONS_BY_NEWSPAPER = "DELETE FROM subscribe WHERE id_newspaper = ?";
     public static final String DELETE_SUBSCRIPTIONS_BY_READER_ID = "delete from subscribe where id_reader = ?";
     public static final String SELECT_READERS_QUERY = "select * from reader";
-    public static final String SELECT_READER_FROM_ID_QUERY = "SELECT * FROM login WHERE id_reader = ?";
+    public static final String SELECT_READER_FROM_ID_WITH_LOGIN_QUERY = "SELECT * FROM reader inner join login on reader.id_reader = login.id_reader WHERE reader.id_reader = ?";
     public static final String SELECT_READER_FROM_LOGIN_QUERY = "SELECT * FROM login WHERE username = ? AND password = ?";
     public static final String SELECT_READERS_BY_ARTICLE_TYPE_QUERY = "SELECT * FROM reader WHERE id IN (SELECT id_reader FROM readarticle WHERE id_article IN (SELECT id_article FROM article WHERE id_type = ?))";
     public static final String SELECT_READERS_BY_NEWSPAPER_QUERY = "select * from reader where id in (select id_reader from subscribe where id_newspaper = ?)";
-    public static final String SELECT_READER_QUERY = "select * from reader where id = ?";
     public static final String INSERT_READER = "INSERT INTO reader (name_reader, birth_reader) VALUES (?,?)";
     public static final String UPDATE_READER = "update reader set name_reader = ?, birth_reader = ? where id = ?";
     public static final String DELETE_READER = "delete from reader where id = ?";
+    public static final String SELECT_LOGIN_FROM_ID_QUERY = "SELECT * FROM login WHERE id_reader = ?";
     public static final String INSERT_LOGIN_QUERY = "INSERT INTO login (username, password, id_reader) VALUES (?, ?, ?)";
     public static final String UPDATE_LOGIN_QUERY = "UPDATE login SET password = ? WHERE username = ?";
     public static final String DELETE_LOGIN_QUERY = "DELETE FROM login WHERE username = ?";
@@ -51,6 +51,7 @@ public class SQLQueries {
     public static final String DELETE_RATING_QUERY = "delete from readarticle where id_article = ? and id_reader = ?";
     public static final String DELETE_RATINGS_BY_NEWSPAPER_QUERY = "DELETE FROM readarticle WHERE id_article IN (SELECT id FROM article WHERE id_newspaper = ?)";
     public static final String DELETE_RATINGS_BY_READER_ID_QUERY = "delete from readarticle where id_reader = ?";
+
     private SQLQueries() {
     }
 

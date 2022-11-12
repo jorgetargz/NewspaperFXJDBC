@@ -39,7 +39,7 @@ public class CredentialsDaoImpl implements CredentialsDao {
     @Override
     public Login get(int idReader) {
         try (Connection con = dbConnection.getConnection();
-             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_FROM_ID_QUERY)) {
+             PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_LOGIN_FROM_ID_QUERY)) {
             preparedStatement.setInt(1, idReader);
             ResultSet rs = preparedStatement.executeQuery();
             return getLoginFromRS(rs);
@@ -93,9 +93,9 @@ public class CredentialsDaoImpl implements CredentialsDao {
 
     private Login getLoginFromRS(ResultSet rs) throws SQLException {
         if (rs.next()) {
-            int idReader = rs.getInt("id_reader");
-            String username = rs.getString("username");
-            String pass = rs.getString("password");
+            int idReader = rs.getInt(Constantes.ID_READER);
+            String username = rs.getString(Constantes.USERNAME);
+            String pass = rs.getString(Constantes.PASSWORD);
             return new Login(username, pass, idReader);
         }
         return null;

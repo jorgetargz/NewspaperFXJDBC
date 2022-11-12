@@ -6,6 +6,7 @@ import dao.ReadersDao;
 import dao.common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.ArticleType;
+import domain.modelo.Login;
 import domain.modelo.Newspaper;
 import domain.modelo.Reader;
 import jakarta.inject.Inject;
@@ -69,7 +70,7 @@ public class ReadersDaoImpl implements ReadersDao {
 
     @Override
     public Reader get(int id) {
-        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_QUERY)) {
+        try (Connection con = dbConnection.getConnection(); PreparedStatement preparedStatement = con.prepareStatement(SQLQueries.SELECT_READER_FROM_ID_WITH_LOGIN_QUERY)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
@@ -217,7 +218,7 @@ public class ReadersDaoImpl implements ReadersDao {
         reader.setId(rs.getInt(Constantes.ID));
         reader.setName(rs.getString(Constantes.NAME_READER));
         reader.setDateOfBirth(rs.getDate(Constantes.BIRTH_READER).toLocalDate());
-        reader.setLogin(credentialsDao.get(rs.getInt(Constantes.ID)));
+        reader.setLogin(new Login(rs.getString(Constantes.USERNAME), rs.getString(Constantes.PASSWORD), rs.getInt(Constantes.ID_READER)));
         return reader;
     }
 }

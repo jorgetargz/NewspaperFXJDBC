@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ServicesNewspapers {
 
-    List<Newspaper> getNewspapers();
+    Either<String, List<Newspaper>> getNewspapers();
 
-    Newspaper get(int id);
+    Either<String, Newspaper> get(int id);
 
     Either<String, Boolean> saveNewspaper(Newspaper newspaper);
 

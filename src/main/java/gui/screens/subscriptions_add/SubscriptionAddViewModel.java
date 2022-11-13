@@ -46,12 +46,12 @@ public class SubscriptionAddViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers != null && !newspapers.isEmpty()) {
-            observableNewspapers.setAll(newspapers);
+        Either<String, List<Newspaper>> newspapers = servicesNewspapers.getNewspapers();
+        if (newspapers.isRight()) {
+            observableNewspapers.clear();
+            observableNewspapers.setAll(newspapers.get());
         } else {
-            state.set(new SubscriptionAddState("There are no newspapers", false));
-
+            state.set(new SubscriptionAddState(newspapers.getLeft(), false));
         }
     }
 

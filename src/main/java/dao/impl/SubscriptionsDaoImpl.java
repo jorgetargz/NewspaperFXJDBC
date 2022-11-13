@@ -4,7 +4,7 @@ import dao.DBConnection;
 import dao.NewspapersDao;
 import dao.ReadersDao;
 import dao.SubscriptionsDao;
-import dao.common.Constantes;
+import common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.Newspaper;
 import domain.modelo.Reader;
@@ -86,7 +86,7 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
             if (rs.next()) {
                 Subscription subscription = new Subscription();
                 subscription.setReader(readersDao.get(reader.getId()));
-                subscription.setNewspaper(newspapersDao.get(newspaper.getId()));
+                subscription.setNewspaper(newspapersDao.get(newspaper.getId()).get());
                 subscription.setSigningDate(rs.getDate(Constantes.SIGNING_DATE).toLocalDate());
                 Date cancellationDate = rs.getDate(Constantes.CANCELLATION_DATE);
                 if (cancellationDate != null) {
@@ -168,7 +168,7 @@ public class SubscriptionsDaoImpl implements SubscriptionsDao {
         while (rs.next()) {
             Subscription subscription = new Subscription();
             subscription.setReader(readersDao.get(rs.getInt(Constantes.ID_READER)));
-            subscription.setNewspaper(newspapersDao.get(rs.getInt(Constantes.ID_NEWSPAPER)));
+            subscription.setNewspaper(newspapersDao.get(rs.getInt(Constantes.ID_NEWSPAPER)).get());
             subscription.setSigningDate(rs.getDate(Constantes.SIGNING_DATE).toLocalDate());
             Date cancellationDate = rs.getDate(Constantes.CANCELLATION_DATE);
             if (cancellationDate != null) {

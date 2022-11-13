@@ -2,6 +2,7 @@ package gui.screens.newspapers_list;
 
 import domain.modelo.Newspaper;
 import domain.services.ServicesNewspapers;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -33,12 +34,12 @@ public class NewspaperListViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new NewspaperListState("There are no newspapers"));
-        } else {
+        Either<String, List<Newspaper>> response = servicesNewspapers.getNewspapers();
+        if (response.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(response.get());
+        } else {
+            state.set(new NewspaperListState(response.getLeft()));
         }
     }
 

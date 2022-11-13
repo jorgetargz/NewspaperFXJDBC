@@ -55,12 +55,12 @@ public class RatingsAddViewModel {
     }
 
     public void loadArticles(Reader reader) {
-        List<Article> articles = servicesArticles.getArticlesAvailableForReader(reader);
-        if (articles.isEmpty()) {
-            state.set(new RatingsAddState("There are no articles available to rate please suscribe to a newspaper", false));
-        } else {
+        Either<String, List<Article>> articles = servicesArticles.getArticlesAvailableForReader(reader);
+        if (articles.isRight()) {
             observableArticles.clear();
-            observableArticles.setAll(articles);
+            observableArticles.setAll(articles.get());
+        } else {
+            state.set(new RatingsAddState(articles.getLeft(), false));
         }
     }
 

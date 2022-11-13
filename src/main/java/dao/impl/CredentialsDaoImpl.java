@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.CredentialsDao;
 import dao.DBConnection;
-import dao.common.Constantes;
+import common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.Login;
 import jakarta.inject.Inject;

@@ -35,12 +35,12 @@ public class NewspaperAddViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new NewspaperAddState("There are no newspapers", false));
-        } else {
+        Either<String,List<Newspaper>> response = servicesNewspapers.getNewspapers();
+        if (response.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(response.get());
+        } else {
+            state.set(new NewspaperAddState(response.getLeft(), false));
         }
     }
 
@@ -54,8 +54,7 @@ public class NewspaperAddViewModel {
         if (result.isLeft()) {
             state.set(new NewspaperAddState(result.getLeft(), false));
         } else {
-            observableNewspapers.clear();
-            observableNewspapers.setAll(servicesNewspapers.getNewspapers());
+            loadNewspapers();
             state.set(new NewspaperAddState(null, true));
         }
     }

@@ -50,32 +50,32 @@ public class ArticlesAddViewModel {
     }
 
     public void loadArticles() {
-        List<Article> articles = servicesArticles.getArticles();
-        if (articles.isEmpty()) {
-            state.set(new ArticlesAddState("There are no articles", false));
-        } else {
+        Either<String, List<Article>> response = servicesArticles.getArticles();
+        if (response.isRight()) {
             observableArticles.clear();
-            observableArticles.setAll(articles);
+            observableArticles.setAll(response.get());
+        } else {
+            state.set(new ArticlesAddState(response.getLeft(), false));
         }
     }
 
     public void loadArticleTypes() {
-        List<ArticleType> articleTypes = servicesArticles.getArticleTypes();
-        if (articleTypes.isEmpty()) {
-            state.set(new ArticlesAddState("There are no article types", false));
-        } else {
+        Either<String, List<ArticleType>> response = servicesArticles.getArticleTypes();
+        if (response.isRight()) {
             observableArticleTypes.clear();
-            observableArticleTypes.setAll(articleTypes);
+            observableArticleTypes.setAll(response.get());
+        } else {
+            state.set(new ArticlesAddState(response.getLeft(), false));
         }
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new ArticlesAddState("There are no newspapers", false));
-        } else {
+        Either<String, List<Newspaper>> response = servicesNewspapers.getNewspapers();
+        if (response.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(response.get());
+        } else {
+            state.set(new ArticlesAddState(response.getLeft(), false));
         }
     }
 

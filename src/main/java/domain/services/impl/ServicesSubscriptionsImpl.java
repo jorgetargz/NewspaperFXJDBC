@@ -49,7 +49,7 @@ public class ServicesSubscriptionsImpl implements ServicesSubscriptions {
 
     @Override
     public Either<String, Boolean> addSubscription(int idReader, int idNewspaper, LocalDate signingDate) {
-        Newspaper newspaper = daoNewspapers.get(idNewspaper);
+        Newspaper newspaper = daoNewspapers.get(idNewspaper).get();
         Reader reader = daoReaders.get(idReader);
         if (newspaper == null) {
             return Either.left("Newspaper not found");

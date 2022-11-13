@@ -4,6 +4,7 @@ import domain.modelo.ArticleQuery3;
 import domain.modelo.Newspaper;
 import domain.services.ServicesArticles;
 import domain.services.ServicesNewspapers;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -43,12 +44,12 @@ public class ArticlesListWithBadRatingViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new ArticlesListWithBadRatingState("There are no newspapers"));
-        } else {
+        Either<String, List<Newspaper>> response = servicesNewspapers.getNewspapers();
+        if (response.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(response.get());
+        } else {
+            state.set(new ArticlesListWithBadRatingState(response.getLeft()));
         }
     }
 
@@ -56,13 +57,12 @@ public class ArticlesListWithBadRatingViewModel {
         if (newspaper == null) {
             state.set(new ArticlesListWithBadRatingState("Select a newspaper"));
         } else {
-            List<ArticleQuery3> articles = servicesArticles.getArticlesByNewspaperWithBadRatings(newspaper);
-            if (articles.isEmpty()) {
+            Either<String, List<ArticleQuery3>> response = servicesArticles.getArticlesByNewspaperWithBadRatings(newspaper);
+            if (response.isRight()) {
                 observableArticles.clear();
-                state.set(new ArticlesListWithBadRatingState("There are no articles with bad ratings for this newspaper"));
+                observableArticles.setAll(response.get());
             } else {
-                observableArticles.clear();
-                observableArticles.setAll(articles);
+                state.set(new ArticlesListWithBadRatingState(response.getLeft()));
             }
         }
     }

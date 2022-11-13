@@ -1,6 +1,6 @@
 package dao.impl.row_mapers;
 
-import dao.common.Constantes;
+import common.Constantes;
 import domain.modelo.ArticleQuery3;
 import org.springframework.jdbc.core.RowMapper;
 

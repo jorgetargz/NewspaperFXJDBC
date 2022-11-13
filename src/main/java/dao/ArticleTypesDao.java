@@ -1,13 +1,14 @@
 package dao;
 
 import domain.modelo.ArticleType;
+import io.vavr.control.Either;
 
 import java.util.List;
 
 public interface ArticleTypesDao {
-    List<ArticleType> getAll();
+    Either<Integer, List<ArticleType>> getAll();
 
-    ArticleType get(int id);
+    Either<Integer, ArticleType> get(int id);
 
     int save(ArticleType articleType);
 

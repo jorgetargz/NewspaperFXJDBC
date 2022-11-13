@@ -7,6 +7,7 @@ import domain.modelo.Reader;
 import domain.services.ServicesArticles;
 import domain.services.ServicesNewspapers;
 import domain.services.ServicesReaders;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -63,22 +64,22 @@ public class ReadersListViewModel {
     }
 
     public void loadArticleTypes() {
-        List<ArticleType> articleTypes = servicesArticles.getArticleTypes();
-        if (articleTypes.isEmpty()) {
-            state.set(new ReadersListState("There are no article types"));
-        } else {
+        Either<String, List<ArticleType>> articleTypes = servicesArticles.getArticleTypes();
+        if (articleTypes.isRight()) {
             observableArticleTypes.clear();
-            observableArticleTypes.setAll(articleTypes);
+            observableArticleTypes.setAll(articleTypes.get());
+        } else {
+            state.set(new ReadersListState(articleTypes.getLeft()));
         }
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new ReadersListState("There are no newspapers"));
-        } else {
+        Either<String, List<Newspaper>> newspapers = servicesNewspapers.getNewspapers();
+        if (newspapers.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(newspapers.get());
+        } else {
+            state.set(new ReadersListState(newspapers.getLeft()));
         }
     }
 

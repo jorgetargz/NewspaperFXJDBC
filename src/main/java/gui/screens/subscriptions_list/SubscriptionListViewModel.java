@@ -4,6 +4,7 @@ import domain.modelo.Newspaper;
 import domain.modelo.Subscription;
 import domain.services.ServicesNewspapers;
 import domain.services.ServicesSubscriptions;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -53,12 +54,12 @@ public class SubscriptionListViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new SubscriptionListState("There are no newspapers"));
-        } else {
+        Either<String, List<Newspaper>> newspapers = servicesNewspapers.getNewspapers();
+        if (newspapers.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(newspapers.get());
+        } else {
+            state.set(new SubscriptionListState(newspapers.getLeft()));
         }
     }
 

@@ -1,19 +1,20 @@
 package dao;
 
 import domain.modelo.*;
+import io.vavr.control.Either;
 
 import java.util.List;
 
 public interface ArticlesDao {
-    List<Article> getAll();
+    Either<Integer, List<Article>> getAll();
 
-    List<Article> getAll(Newspaper newspaper);
+    Either<Integer, List<Article>> getAll(Newspaper newspaper);
 
-    List<Article> getAll(ArticleType articleType);
+    Either<Integer, List<Article>> getAll(ArticleType articleType);
 
-    List<Article> getAll(Reader reader);
+    Either<Integer, List<Article>> getAll(Reader reader);
 
-    Article get(int id);
+    Either<Integer, Article> get(int id);
 
     int save(Article article);
 
@@ -21,7 +22,7 @@ public interface ArticlesDao {
 
     ArticleQuery1 getArticleQuery1(int id);
 
-    List<ArticleQuery2> getArticlesQuery2(ArticleType articleType);
+    Either<Integer, List<ArticleQuery2>> getArticlesQuery2(ArticleType articleType);
 
-    List<ArticleQuery3> getArticlesQuery3(Newspaper newspaper);
+    Either<Integer, List<ArticleQuery3>> getArticlesQuery3(Newspaper newspaper);
 }

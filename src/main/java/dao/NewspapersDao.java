@@ -1,13 +1,14 @@
 package dao;
 
 import domain.modelo.Newspaper;
+import io.vavr.control.Either;
 
 import java.util.List;
 
 public interface NewspapersDao {
-    List<Newspaper> getAll();
+    Either<Integer, List<Newspaper>> getAll();
 
-    Newspaper get(int id);
+    Either<Integer, Newspaper> get(int id);
 
     int save(Newspaper newspaper);
 

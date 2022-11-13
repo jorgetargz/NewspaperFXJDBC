@@ -6,19 +6,19 @@ import io.vavr.control.Either;
 import java.util.List;
 
 public interface ServicesArticles {
-    List<Article> getArticles();
+    Either<String, List<Article>> getArticles();
 
-    List<Article> getArticlesByType(int typeId);
+    Either<String, List<Article>> getArticlesByType(ArticleType typeId);
 
-    List<Article> getArticlesAvailableForReader(Reader reader);
+    Either<String, List<Article>> getArticlesAvailableForReader(Reader reader);
 
-    List<ArticleType> getArticleTypes();
+    Either<String, List<ArticleType>> getArticleTypes();
 
     Either<String, Boolean> saveArticle(Article article);
 
     Either<String, ArticleQuery1> getArticleInfo(int id);
 
-    List<ArticleQuery2> getArticlesByTypeWithNewspaper(ArticleType articleType);
+    Either<String, List<ArticleQuery2>> getArticlesByTypeWithNewspaper(ArticleType articleType);
 
-    List<ArticleQuery3> getArticlesByNewspaperWithBadRatings(Newspaper newspaper);
+    Either<String, List<ArticleQuery3>> getArticlesByNewspaperWithBadRatings(Newspaper newspaper);
 }

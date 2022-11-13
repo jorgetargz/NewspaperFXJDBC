@@ -34,12 +34,12 @@ public class NewspaperDeleteViewModel {
     }
 
     public void loadNewspapers() {
-        List<Newspaper> newspapers = servicesNewspapers.getNewspapers();
-        if (newspapers.isEmpty()) {
-            state.set(new NewspaperDeleteState("There are no newspapers", false));
-        } else {
+        Either<String, List<Newspaper>> response = servicesNewspapers.getNewspapers();
+        if (response.isRight()) {
             observableNewspapers.clear();
-            observableNewspapers.setAll(newspapers);
+            observableNewspapers.setAll(response.get());
+        } else {
+            state.set(new NewspaperDeleteState(response.getLeft(), false));
         }
     }
 

@@ -44,11 +44,11 @@ public class ServicesRatingsImpl implements ServicesRatings {
         if (reader == null) {
             return Either.left("Reader not found");
         }
-        Article article = daoArticles.get(idArticle);
+        Article article = daoArticles.get(idArticle).get();
         if (article == null) {
             return Either.left("Article not found");
         }
-        Newspaper newspaper = daoNewspapers.get(article.getNewspaperId());
+        Newspaper newspaper = daoNewspapers.get(article.getNewspaperId()).get();
         if (newspaper == null) {
             return Either.left("Newspaper not found");
         }

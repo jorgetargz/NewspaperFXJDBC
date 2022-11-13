@@ -2,7 +2,7 @@ package dao.impl;
 
 import dao.DBConnection;
 import dao.ReadersDao;
-import dao.common.Constantes;
+import common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.ArticleType;
 import domain.modelo.Login;

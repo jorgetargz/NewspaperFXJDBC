@@ -42,22 +42,22 @@ public class ArticlesListViewModel {
     }
 
     public void loadArticles() {
-        List<Article> articles = servicesArticles.getArticles();
-        if (articles.isEmpty()) {
-            state.set(new ArticlesListState("There are no articles"));
-        } else {
+        Either<String, List<Article>> response = servicesArticles.getArticles();
+        if (response.isRight()) {
             observableArticles.clear();
-            observableArticles.setAll(articles);
+            observableArticles.setAll(response.get());
+        } else {
+            state.set(new ArticlesListState(response.getLeft()));
         }
     }
 
     public void loadArticleTypes() {
-        List<ArticleType> articleTypes = servicesArticles.getArticleTypes();
-        if (articleTypes.isEmpty()) {
-            state.set(new ArticlesListState("There are no article types"));
-        } else {
+        Either<String, List<ArticleType>> response = servicesArticles.getArticleTypes();
+        if (response.isRight()) {
             observableArticleTypes.clear();
-            observableArticleTypes.setAll(articleTypes);
+            observableArticleTypes.setAll(response.get());
+        } else {
+            state.set(new ArticlesListState(response.getLeft()));
         }
     }
 
@@ -65,13 +65,12 @@ public class ArticlesListViewModel {
         if (articleType == null) {
             state.set(new ArticlesListState("Select an article type"));
         } else {
-            List<Article> articles = servicesArticles.getArticlesByType(articleType.getId());
-            if (articles.isEmpty()) {
+            Either<String, List<Article>> response = servicesArticles.getArticlesByType(articleType);
+            if (response.isRight()) {
                 observableArticles.clear();
-                state.set(new ArticlesListState("There are no articles of this type"));
+                observableArticles.setAll(response.get());
             } else {
-                observableArticles.clear();
-                observableArticles.setAll(articles);
+                state.set(new ArticlesListState(response.getLeft()));
             }
         }
     }

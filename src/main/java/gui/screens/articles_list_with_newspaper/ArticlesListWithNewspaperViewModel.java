@@ -3,6 +3,7 @@ package gui.screens.articles_list_with_newspaper;
 import domain.modelo.ArticleQuery2;
 import domain.modelo.ArticleType;
 import domain.services.ServicesArticles;
+import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -40,12 +41,12 @@ public class ArticlesListWithNewspaperViewModel {
     }
 
     public void loadArticleTypes() {
-        List<ArticleType> articleTypes = servicesArticles.getArticleTypes();
-        if (articleTypes.isEmpty()) {
-            state.set(new ArticlesListWithNewspaperState("There are no article types"));
-        } else {
+        Either<String,List<ArticleType>> response = servicesArticles.getArticleTypes();
+        if (response.isRight()) {
             observableArticleTypes.clear();
-            observableArticleTypes.setAll(articleTypes);
+            observableArticleTypes.setAll(response.get());
+        } else {
+            state.set(new ArticlesListWithNewspaperState(response.getLeft()));
         }
     }
 
@@ -53,13 +54,12 @@ public class ArticlesListWithNewspaperViewModel {
         if (articleType == null) {
             state.set(new ArticlesListWithNewspaperState("Select an article type"));
         } else {
-            List<ArticleQuery2> articles = servicesArticles.getArticlesByTypeWithNewspaper(articleType);
-            if (articles.isEmpty()) {
+            Either<String,List<ArticleQuery2>> response = servicesArticles.getArticlesByTypeWithNewspaper(articleType);
+            if (response.isRight()) {
                 observableArticles.clear();
-                state.set(new ArticlesListWithNewspaperState("There are no articles of this type"));
+                observableArticles.setAll(response.get());
             } else {
-                observableArticles.clear();
-                observableArticles.setAll(articles);
+                state.set(new ArticlesListWithNewspaperState(response.getLeft()));
             }
         }
     }

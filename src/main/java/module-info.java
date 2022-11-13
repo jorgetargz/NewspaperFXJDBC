@@ -43,7 +43,7 @@ module NewspaperFX {
 
 
     exports dao;
-    exports dao.common;
+    exports common;
     exports dao.impl;
     exports dao.impl.row_mapers;
     exports domain.services;
@@ -80,6 +80,6 @@ module NewspaperFX {
     opens fxml;
     opens media;
     opens configs;
-    opens dao.common;
+    opens common;
     opens dao.utils;
 }

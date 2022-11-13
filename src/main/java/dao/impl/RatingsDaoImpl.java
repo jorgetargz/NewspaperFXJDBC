@@ -4,7 +4,7 @@ import dao.ArticlesDao;
 import dao.DBConnection;
 import dao.RatingsDao;
 import dao.ReadersDao;
-import dao.common.Constantes;
+import common.Constantes;
 import dao.utils.SQLQueries;
 import domain.modelo.ArticleRating;
 import domain.modelo.Reader;
@@ -64,7 +64,7 @@ public class RatingsDaoImpl implements RatingsDao {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 articleRating.setRating(rs.getInt("rating"));
-                articleRating.setArticle(articlesDao.get(rs.getInt("id_article")));
+                articleRating.setArticle(articlesDao.get(rs.getInt("id_article")).get());
                 articleRating.setReader(readersDao.get(rs.getInt("id_reader")));
                 return articleRating;
             }
@@ -111,7 +111,7 @@ public class RatingsDaoImpl implements RatingsDao {
         while (rs.next()) {
             ArticleRating articleRating = new ArticleRating();
             articleRating.setId(rs.getInt("id"));
-            articleRating.setArticle(articlesDao.get(rs.getInt("id_article")));
+            articleRating.setArticle(articlesDao.get(rs.getInt("id_article")).get());
             articleRating.setReader(readersDao.get(rs.getInt("id_reader")));
             articleRating.setRating(rs.getInt("rating"));
             ratings.add(articleRating);

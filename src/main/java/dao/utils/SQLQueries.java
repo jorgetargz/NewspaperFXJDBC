@@ -5,7 +5,7 @@ public class SQLQueries {
     public static final String SELECT_SUBSCRIPTIONS_QUERY = "SELECT * FROM subscribe";
     public static final String SELECT_SUBSCRIPTIONS_BY_NEWSPAPER_QUERY = "select * from subscribe where id_newspaper = ?";
     public static final String SELECT_SUBSCRIPTIONS_BY_READER_QUERY = "SELECT * FROM subscribe WHERE id_reader = ?";
-    public static final String SELECT_OLDEST_SUBSCRIPTIONS_BY_NEWSPAPER_QUERY = "select * from subscribe where id_newspaper = ? order by signing_date limit 10";
+    public static final String SELECT_OLDEST_SUBSCRIPTIONS_BY_NEWSPAPER_QUERY = "select * from subscribe where id_newspaper = ? and cancellation_date is null order by signing_date limit 10";
     public static final String SELECT_SUBSCRIPTION_BY_NEWSPAPER_AND_READER_QUERY = "SELECT * FROM subscribe WHERE id_newspaper = ? AND id_reader = ?";
     public static final String INSERT_SUBSCRIPTION = "INSERT INTO subscribe (id_reader, id_newspaper, signing_date) VALUES (?, ?, ?)";
     public static final String UPDATE_SUBSCRIPTION = "UPDATE subscribe SET cancellation_date = ? WHERE id_newspaper = ? AND id_reader = ?";
